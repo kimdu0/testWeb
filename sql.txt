@@ -1,0 +1,37 @@
+
+-- 권한 부여 계정
+Create User 'sb'> '@'%' identified by '123456';
+grant all privileges on sbboard.* to 'sb'@'%';
+flush privileges;
+
+-- 데이터베이스 생성
+CREATE DATABASE sbboard;
+
+-- 사용자 테이블 생성
+USE sbboard;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- 게시판 테이블 생성
+CREATE TABLE posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    author VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT,
+    file_path VARCHAR(255)
+);
+
+-- 관리자 게시판 테이블 생성
+CREATE TABLE notices (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    author VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT,
+    file_path VARCHAR(255)
+);
+
+insert into users (username, password) VALUES ('admin', 'admin2023');

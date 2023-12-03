@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지 목록</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .board-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .board-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .post-list {
+            list-style: none;
+            padding: 0;
+        }
+        .post-list-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .post-list-item a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .post-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .post-number, .post-author {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .create-post-button {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="board-container">
+            <h1 class="board-title">검색 결과</h1>
+            <p>검색어: <%- query %></p>
+            <ul class="post-list">
+                <% if (notices.length > 0) { %>
+                    <% for (const post of notices) { %>
+                        <li class="post-list-item">
+                            <div class="post-info">
+                                <span class="post-number">글 번호: <%= post.id %></span>
+                                <span class="post-author">작성자: <%= post.author %></span>
+                            </div>
+                            <a href="/notice/<%= post.id %>"><%= post.title %></a>
+                        </li>
+                    <% } %>
+                <% } else { %>
+                    <p>검색 결과가 없습니다.</p>
+                <% } %>
+            </ul>
+            <a href="/notice/create" class="btn btn-primary create-post-button">게시물 작성</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>공지 수정</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        // 사용자 정보가 있을 때만 알림 창을 띄움
+        <% if (user === post.author ) { %>
+            alert("게시글 수정이 가능합니다.");
+        <% } else { %>
+            alert("타 사용자의 게시글입니다.");
+            window.history.back();
+        <% } %>
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">공지 수정</h1>
+        <form method="POST" action="/notice/edit/<%= post.id %>" class="mt-3">
+            <div class="form-group">
+                <label for="title">제목:</label>
+                <input type="text" id="title" name="title" value="<%= post.title %>" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="content">내용:</label>
+                <textarea id="content" name="content" class="form-control" required><%= post.content %></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">수정</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS 및 Popper.js CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
